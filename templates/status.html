@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Status</title>
+</head>
+<body>
+    <h1>Your Submissions</h1>
+    <a href="{{ url_for('logout') }}">Logout</a>
+    <ul>
+        {% for submission in submissions %}
+            <li>
+                <img src="{{ url_for('static', filename='uploads/' + submission.image_path) }}" alt="Uploaded Image" style="max-width: 100px; height: auto;">
+                <p>Address: {{ submission.address }}</p>
+                <p>Problem: {{ submission.problem }}</p>
+                <p>Status: {{ 'Approved' if submission.approved else 'Pending' }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

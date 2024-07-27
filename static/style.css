@@ -1,0 +1,167 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form input[type="file"],
+form input[type="text"],
+form textarea {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+form button {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+form button:hover {
+    background-color: #0056b3;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    display: flex;
+    flex-direction: column;
+    background-color: #f9f9f9;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+li img {
+    max-width: 100px;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+li p {
+    margin: 5px 0;
+    text-align: center; /* Center text in li */
+}
+
+li a {
+    margin: 0 5px;
+    padding: 5px 10px;
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+li a:hover {
+    background-color: #0056b3;
+}
+
+a.approve {
+    background-color: #28a745;
+}
+
+a.approve:hover {
+    background-color: #218838;
+}
+
+a.disapprove {
+    background-color: #dc3545;
+}
+
+a.disapprove:hover {
+    background-color: #c82333;
+}
+
+/* Container for the image */
+.image-container {
+    width: 210mm; /* 1/4 of A4 width in millimeters */
+    height: 148.5mm; /* 1/4 of A4 height in millimeters */
+    border: 1px solid #ddd;
+    margin: 0 auto; /* Center container horizontally */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    box-sizing: border-box;
+    overflow: hidden; /* Hide any overflow */
+}
+
+/* Style for the image */
+.image-container img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* Scale image to fit within the container */
+}
+
+/* Center text and buttons */
+.submission-details {
+    text-align: center; /* Center text */
+    margin-top: 10px;
+}
+
+/* Center buttons */
+.button-container {
+    display: flex;
+    justify-content: center; /* Center buttons horizontally */
+    margin-top: 10px;
+}
+
+/* Style for buttons in button-container */
+.button-container a {
+    width: 30%; /* Make buttons 1/3 of container's width */
+    text-align: center;
+    padding: 10px;
+    margin: 0 5px; /* Space between buttons */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #fff;
+    background-color: #007bff;
+    transition: background-color 0.3s;
+}
+
+.button-container a:hover {
+    background-color: #0056b3;
+}
+
+.button-container a.disapprove {
+    background-color: #dc3545;
+}
+
+.button-container a.disapprove:hover {
+    background-color: #c82333;
+}

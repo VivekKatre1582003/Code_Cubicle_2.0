@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Admin Page</h1>
+    {% if submissions %}
+        <ul>
+        {% for submission in submissions %}
+            <li>
+                <div class="image-container">
+                    <img src="{{ url_for('static', filename='uploads/' + submission.image_path) }}" alt="Uploaded Image">
+                </div>
+                <div class="submission-details">
+                    <p>Address: {{ submission.address }}</p>
+                    <p>Problem: {{ submission.problem }}</p>
+                    <p>Points: {{ submission.points }}</p>
+                </div>
+                <div class="button-container">
+                    <a class="approve" href="{{ url_for('approve', id=submission.id) }}">Approve</a>
+                    <a class="disapprove" href="{{ url_for('disapprove', id=submission.id) }}">Disapprove</a>
+                </div>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No submissions pending approval.</p>
+    {% endif %}
+</body>
+</html>
