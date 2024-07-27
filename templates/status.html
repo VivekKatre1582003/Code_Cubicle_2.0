@@ -1,20 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Status</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Your Submissions</h1>
-    <a href="{{ url_for('logout') }}">Logout</a>
-    <ul>
-        {% for submission in submissions %}
-            <li>
-                <img src="{{ url_for('static', filename='uploads/' + submission.image_path) }}" alt="Uploaded Image" style="max-width: 100px; height: auto;">
-                <p>Address: {{ submission.address }}</p>
-                <p>Problem: {{ submission.problem }}</p>
-                <p>Status: {{ 'Approved' if submission.approved else 'Pending' }}</p>
-            </li>
-        {% endfor %}
-    </ul>
+    <div class="container">
+        <header>
+            <h1>Your Submissions</h1>
+            <a class="button" href="{{ url_for('logout') }}">Logout</a>
+        </header>
+        <ul class="submission-list">
+            {% for submission in submissions %}
+                <li class="submission-item">
+                    <img src="{{ url_for('static', filename='uploads/' + submission.image_path) }}" alt="Uploaded Image">
+                    <p><strong>Address:</strong> {{ submission.address }}</p>
+                    <p><strong>Problem:</strong> {{ submission.problem }}</p>
+                    <p><strong>Status:</strong> {{ 'Approved' if submission.approved else 'Pending' }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
 </body>
 </html>

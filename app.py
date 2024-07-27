@@ -55,15 +55,21 @@ def register():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
+        
+        # Check if the username already exists
         if User.query.filter_by(username=username).first():
-            flash('Username already exists.')
+            flash('Username already exists.', 'error')
             return redirect(url_for('register'))
+        
+        # Hash the password and create a new user
         hashed_password = generate_password_hash(password)
         new_user = User(username=username, password_hash=hashed_password)
         db.session.add(new_user)
         db.session.commit()
-        flash('User registered successfully')
+        
+        flash('User registered successfully', 'success')
         return redirect(url_for('login'))
+    
     return render_template('register.html')
 
 @app.route('/logout')
@@ -98,7 +104,8 @@ def upload_file():
     db.session.add(new_submission)
     db.session.commit()
     
-    return redirect(url_for('status'))
+    flash('Complaint registered successfully! Do you want to register another complaint?')
+    return redirect(url_for('user_page', register_another=True))
 
 @app.route('/status')
 def status():
@@ -131,13 +138,23 @@ def approve(id):
     if submission:
         submission.approved = True
         submission.points += 10
-        approved_path = os.path.join(app.config['APPROVED_FOLDER'], os.path.basename(submission.image_path))
         original_path = os.path.join(app.config['UPLOAD_FOLDER'], submission.image_path)
+        approved_path = os.path.join(app.config['APPROVED_FOLDER'], os.path.basename(submission.image_path))
+        
+        # Check if the file already exists in the approved directory
+        if os.path.exists(approved_path):
+            # Remove the existing file
+            os.remove(approved_path)
+            
+            # Alternatively, you can rename the new file with a different name (e.g., add a suffix)
+            # base, ext = os.path.splitext(submission.image_path)
+            # approved_path = os.path.join(app.config['APPROVED_FOLDER'], f"{base}_new{ext}")
+
         os.rename(original_path, approved_path)
         submission.image_path = os.path.join('approved', os.path.basename(submission.image_path))
         db.session.commit()
         flash('Submission approved and points updated.')
-    return redirect(url_for('approved'))
+    return redirect(url_for('admin'))
 
 @app.route('/disapprove/<int:id>')
 def disapprove(id):

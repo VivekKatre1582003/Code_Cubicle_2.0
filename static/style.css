@@ -123,7 +123,7 @@ a.disapprove:hover {
 /* Style for the image */
 .image-container img {
     max-width: 100%;
-    max-height: 100%;
+    max-height: %;
     object-fit: contain; /* Scale image to fit within the container */
 }
 

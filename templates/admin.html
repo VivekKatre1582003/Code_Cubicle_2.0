@@ -7,28 +7,32 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Admin Page</h1>
-    {% if submissions %}
-        <ul>
-        {% for submission in submissions %}
-            <li>
-                <div class="image-container">
-                    <img src="{{ url_for('static', filename='uploads/' + submission.image_path) }}" alt="Uploaded Image">
-                </div>
-                <div class="submission-details">
-                    <p>Address: {{ submission.address }}</p>
-                    <p>Problem: {{ submission.problem }}</p>
-                    <p>Points: {{ submission.points }}</p>
-                </div>
-                <div class="button-container">
-                    <a class="approve" href="{{ url_for('approve', id=submission.id) }}">Approve</a>
-                    <a class="disapprove" href="{{ url_for('disapprove', id=submission.id) }}">Disapprove</a>
-                </div>
-            </li>
-        {% endfor %}
-        </ul>
-    {% else %}
-        <p>No submissions pending approval.</p>
-    {% endif %}
+    <div class="container">
+        <header>
+            <h1>Admin Page</h1>
+            <a class="button back" href="{{ url_for('admin') }}">Back to Admin Page</a>
+        </header>
+        {% if submissions %}
+            <ul class="submission-list">
+            {% for submission in submissions %}
+                <li class="submission-item">
+                    <div class="image-container">
+                        <img src="{{ url_for('static', filename='uploads/' + submission.image_path) }}" alt="Uploaded Image">
+                    </div>
+                    <div class="submission-details">
+                        <p><strong>Address:</strong> {{ submission.address }}</p>
+                        <p><strong>Problem:</strong> {{ submission.problem }}</p>
+                    </div>
+                    <div class="button-container">
+                        <a class="button approve" href="{{ url_for('approve', id=submission.id) }}">Approve</a>
+                        <a class="button disapprove" href="{{ url_for('disapprove', id=submission.id) }}">Disapprove</a>
+                    </div>
+                </li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>No submissions pending approval.</p>
+        {% endif %}
+    </div>
 </body>
 </html>

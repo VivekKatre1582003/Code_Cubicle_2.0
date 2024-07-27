@@ -4,46 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Approved Submissions</title>
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            padding: 10px;
-            text-align: left;
-            border: 1px solid #ddd;
-        }
-        img {
-            max-width: 200px; /* Adjust this value based on your preference */
-            height: auto;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Approved Submissions</h1>
-    <a href="{{ url_for('admin') }}">Back to Admin Page</a>
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Image</th>
-                <th>Address</th>
-                <th>Problem</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for submission in submissions %}
-            <tr>
-                <td>{{ submission.id }}</td>
-                <td>
-                    <img src="{{ url_for('static', filename='uploads/' + submission.image_path) }}" alt="Image">
-                </td>
-                <td>{{ submission.address }}</td>
-                <td>{{ submission.problem }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <div class="container">
+        <header>
+            <h1>Approved Submissions</h1>
+            <a class="button back" href="{{ url_for('admin') }}">Back to Admin Page</a>
+        </header>
+        <table class="submission-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Image</th>
+                    <th>Address</th>
+                    <th>Problem</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for submission in submissions %}
+                <tr>
+                    <td>{{ submission.id }}</td>
+                    <td><img src="{{ url_for('static', filename='uploads/' + submission.image_path) }}" alt="Image"></td>
+                    <td>{{ submission.address }}</td>
+                    <td>{{ submission.problem }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
